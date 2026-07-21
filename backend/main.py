@@ -6,7 +6,7 @@ from typing import List, Dict, Any
 from datetime import datetime
 
 logger = logging.getLogger("API-Gateway")
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO) 
 
 app = FastAPI(
     title="ET AI 2.0 Smart City Air Intelligence API",

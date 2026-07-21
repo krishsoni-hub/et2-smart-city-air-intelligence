@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+celery
+redis
+asyncpg
+psycopg2-binary
+sqlalchemy
+optuna
+lightgbm
+shap
+langchain-core
+langchain-google-genai
+pydantic
+pandas
+scikit-learn
+geopandas
+shapely
