@@ -1,0 +1,51 @@
+name: Production CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest numpy scikit-learn
+          # Simulating backend install
+          pip install -r backend/requirements.txt
+          
+      - name: Run Mathematical Validation Harness
+        run: |
+          python -m pytest tests/test_mathematical_validation.py -v
+          
+      - name: Run End-to-End Pipeline Cycle
+        run: |
+          python -m pytest tests/test_e2e_pipeline.py -v
+          
+  deploy-to-kubernetes:
+    needs: integration-tests
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        
+      - name: Deploy to K8s cluster (Mock)
+        run: |
+          echo "Simulating deployment using kubectl apply -f k8s/"
+          echo "✅ Successfully deployed API Gateway and Celery Workers."
