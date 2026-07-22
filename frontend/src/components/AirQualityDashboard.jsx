@@ -51,7 +51,7 @@ export default function AirQualityDashboard() {
     let color = '#22c55e'; // Green (Good)
     if (pm25 > 100) color = '#ef4444'; // Red (Hazardous)
     else if (pm25 > 50) color = '#f97316'; // Orange (Poor)
-    
+
     return {
       fillColor: color,
       weight: 1,
@@ -67,7 +67,7 @@ export default function AirQualityDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-6 flex flex-col font-sans">
-      
+
       {/* Header */}
       <header className="mb-6 flex justify-between items-center border-b border-gray-700 pb-4">
         <div>
@@ -83,7 +83,7 @@ export default function AirQualityDashboard() {
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1">
-        
+
         {/* Left Column: Map Viewport (Takes up 2 cols on lg) */}
         <div className="lg:col-span-2 flex flex-col gap-6">
           <div className="bg-gray-800 rounded-xl shadow-lg border border-gray-700 overflow-hidden h-[500px] flex flex-col">
@@ -101,9 +101,9 @@ export default function AirQualityDashboard() {
                   url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
                   attribution='&copy; <a href="https://carto.com/">CARTO</a>'
                 />
-                <GeoJSON 
-                  data={geoData} 
-                  style={getStyle} 
+                <GeoJSON
+                  data={geoData}
+                  style={getStyle}
                 >
                   <Tooltip sticky className="bg-gray-800 text-gray-100 border-none shadow-xl rounded-lg p-2">
                     <div className="flex flex-col gap-1">
@@ -144,7 +144,7 @@ export default function AirQualityDashboard() {
           <p className="text-xs text-gray-400 mb-4 border-b border-gray-700 pb-4">
             Live prioritized dispatch log optimizing for severity and source enforceability.
           </p>
-          
+
           <div className="flex flex-col gap-4 overflow-y-auto pr-2 custom-scrollbar">
             {enforcementLog.map((target) => (
               <div key={target.id} className="bg-gray-700/50 rounded-lg p-4 border border-gray-600 hover:border-blue-500/50 transition-colors">
@@ -156,7 +156,7 @@ export default function AirQualityDashboard() {
                   <p className="text-sm font-semibold text-gray-200">GPS: <span className="font-mono text-gray-300">{target.coords}</span></p>
                   <p className="text-sm text-gray-400 mt-1">Source: <span className="text-yellow-400/90">{target.source}</span></p>
                 </div>
-                <button 
+                <button
                   onClick={() => handleDeploy(target.id)}
                   className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 rounded shadow transition-all active:scale-95"
                 >
@@ -165,7 +165,7 @@ export default function AirQualityDashboard() {
               </div>
             ))}
           </div>
-          
+
         </div>
       </div>
     </div>
