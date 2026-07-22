@@ -17,3 +17,4 @@ geopandas
 shapely
 aiohttp
 earthengine-api
+python-dotenv
